@@ -59,7 +59,55 @@ SKILLS = [
     "ONNX",
     "CUDA",
 ]
+SKILL_ALIASES = {
+    "scikit-learn": [
+    "scikit-learn",
+    "sklearn"
+],
 
+"node.js": [
+    "node.js",
+    "nodejs"
+],
+
+"rest api": [
+    "rest api",
+    "restful api",
+    "rest"
+],
+
+"data analysis": [
+    "data analysis",
+    "data analytics"
+],
+    "sql": ["sql", "mysql", "postgresql", "sqlite"],
+    "python": ["python"],
+    "javascript": ["javascript", "js"],
+    "typescript": ["typescript", "ts"],
+    "machine learning": ["machine learning", "ml"],
+    "artificial intelligence": ["artificial intelligence", "ai"],
+    "natural language processing": [
+        "natural language processing",
+        "nlp"
+    ],
+    "computer vision": [
+        "computer vision",
+        "opencv"
+    ],
+    "deep learning": [
+        "deep learning"
+    ],
+    "fastapi": ["fastapi"],
+    "django": ["django"],
+    "flask": ["flask"],
+    "react": ["react", "react.js"],
+    "node.js": ["node.js", "nodejs"],
+    "git": ["git", "github"],
+    "github": ["github"],
+    "docker": ["docker"],
+    "pytorch": ["pytorch"],
+    "tensorflow": ["tensorflow"],
+}
 
 def extract_skills(text):
     found_skills = []
@@ -67,10 +115,19 @@ def extract_skills(text):
     text = text.lower()
 
     for skill in SKILLS:
-        pattern = r"\b" + re.escape(skill.lower()) + r"\b"
+        skill_key = skill.lower()
 
-        if re.search(pattern, text):
-            found_skills.append(skill)
+        if skill_key in SKILL_ALIASES:
+            aliases = SKILL_ALIASES[skill_key]
+        else:
+            aliases = [skill_key]
+
+        for alias in aliases:
+            pattern = r"(?<!\w)" + re.escape(alias) + r"(?!\w)"
+
+            if re.search(pattern, text):
+                found_skills.append(skill)
+                break
 
     return found_skills
 def match_job_description(resume_text, job_description):
@@ -78,19 +135,41 @@ def match_job_description(resume_text, job_description):
     job_skills = extract_skills(job_description)
 
     matched_skills = []
-
-    for skill in job_skills:
-        if skill in resume_skills:
-            matched_skills.append(skill)
-
     missing_skills = []
 
-    for skill in job_skills:
-        if skill not in resume_skills:
-            missing_skills.append(skill)
+    for job_skill in job_skills:
+
+        job_skill_key = job_skill.lower()
+
+        job_aliases = SKILL_ALIASES.get(
+            job_skill_key,
+            [job_skill_key]
+        )
+
+        resume_has_skill = False
+
+        for resume_skill in resume_skills:
+
+            resume_skill_key = resume_skill.lower()
+
+            resume_aliases = SKILL_ALIASES.get(
+                resume_skill_key,
+                [resume_skill_key]
+            )
+
+            if set(job_aliases) & set(resume_aliases):
+                resume_has_skill = True
+                break
+
+        if resume_has_skill:
+            matched_skills.append(job_skill)
+        else:
+            missing_skills.append(job_skill)
 
     if len(job_skills) > 0:
-        skill_match_score = (len(matched_skills) / len(job_skills)) * 100
+        skill_match_score = (
+            len(matched_skills) / len(job_skills)
+        ) * 100
     else:
         skill_match_score = 0
 
