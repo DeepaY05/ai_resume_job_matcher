@@ -11,607 +11,746 @@
 
         * {
             box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            font-family: Arial, sans-serif;
-            background: #f4f6f9;
-            margin: 0;
-            color: #222;
+            background: #f5f7fb;
+            color: #1f2937;
         }
 
         .container {
             width: 90%;
-            max-width: 950px;
+            max-width: 1100px;
             margin: 40px auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        header h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #6b7280;
+            font-size: 16px;
         }
 
         .card {
             background: white;
+            border-radius: 14px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+        }
+
+        .card h2 {
+            margin-bottom: 18px;
+        }
+
+        .upload-area {
+            border: 2px dashed #9ca3af;
+            border-radius: 12px;
             padding: 35px;
-            border-radius: 16px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-        }
-
-        h1 {
             text-align: center;
-            margin-bottom: 8px;
+            cursor: pointer;
         }
 
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 30px;
+        .upload-area:hover {
+            border-color: #2563eb;
         }
 
-        label {
-            display: block;
+        input[type="file"] {
+            margin-top: 15px;
+        }
+
+        .file-name {
+            margin-top: 15px;
             font-weight: bold;
-            margin-top: 20px;
-            margin-bottom: 8px;
         }
 
-        input[type="file"],
         textarea {
             width: 100%;
-            padding: 12px;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 15px;
-        }
-
-        textarea {
-            height: 180px;
+            min-height: 180px;
+            padding: 15px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
             resize: vertical;
+            font-size: 15px;
+            margin-top: 10px;
         }
 
         button {
-            width: 100%;
-            margin-top: 25px;
-            padding: 14px;
             border: none;
-            border-radius: 8px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            background: #222;
+            background: #2563eb;
             color: white;
+            padding: 13px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            margin-top: 18px;
         }
 
         button:hover {
-            background: #444;
+            background: #1d4ed8;
         }
 
-        /* Selected Resume */
-
-        .file-box {
-            width: 100%;
-        }
-
-        .selected-file {
+        .results {
             display: none;
-            align-items: center;
-            justify-content: space-between;
-            margin-top: 10px;
-            padding: 10px 14px;
-            background: #f1f3f5;
-            border: 1px solid #ddd;
-            border-radius: 8px;
         }
 
-        #fileName {
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            padding-right: 10px;
+        .score-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
         }
 
-        #removeFile {
-            width: 30px;
-            height: 30px;
-            margin: 0;
-            padding: 0;
-            border-radius: 50%;
-            background: transparent;
-            color: #555;
-            font-size: 22px;
-            line-height: 28px;
-            flex-shrink: 0;
-        }
-
-        #removeFile:hover {
-            background: #ddd;
-            color: #222;
-        }
-
-        /* Loading */
-
-        .loading {
+        .score-box {
             text-align: center;
-            margin-top: 20px;
-            display: none;
+            padding: 25px;
+            border-radius: 12px;
+            background: #f8fafc;
         }
 
-        /* Results */
-
-        #result {
-            margin-top: 25px;
-            display: none;
-        }
-
-        .score-card {
-            text-align: center;
-            background: white;
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+        .score-box h3 {
+            color: #6b7280;
+            font-size: 14px;
+            margin-bottom: 12px;
         }
 
         .score {
-            font-size: 48px;
+            font-size: 32px;
             font-weight: bold;
-            margin: 15px 0;
-        }
-
-        .progress-container {
-            width: 100%;
-            height: 12px;
-            background: #e5e7eb;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-
-        .progress-bar {
-            height: 100%;
-            background: #222;
-            border-radius: 10px;
-        }
-
-        .metrics {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .metric-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
-        }
-
-        .metric-value {
-            font-size: 25px;
-            font-weight: bold;
-            margin-top: 8px;
         }
 
         .skills-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin-top: 20px;
         }
 
-        .skills-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
         }
 
         .skill {
-            display: inline-block;
-            padding: 7px 12px;
-            margin: 4px;
+            padding: 8px 12px;
             border-radius: 20px;
-            background: #eef0f2;
-            font-size: 14px;
+            font-size: 13px;
+            background: #e5e7eb;
         }
 
-        /* Mobile */
+        .matched {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .missing {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .breakdown {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .breakdown th,
+        .breakdown td {
+            text-align: left;
+            padding: 13px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .breakdown th {
+            background: #f8fafc;
+        }
+
+        .status {
+            font-weight: bold;
+        }
+
+        .status.matched-text {
+            color: #15803d;
+        }
+
+        .status.missing-text {
+            color: #dc2626;
+        }
+
+        .importance {
+            text-transform: capitalize;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 15px;
+            color: #6b7280;
+        }
+
+        .error {
+            display: none;
+            background: #fee2e2;
+            color: #991b1b;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
 
         @media (max-width: 700px) {
 
-            .metrics,
+            .score-container {
+                grid-template-columns: 1fr;
+            }
+
             .skills-container {
                 grid-template-columns: 1fr;
             }
 
-            .card {
-                padding: 22px;
+            .container {
+                width: 94%;
             }
-
         }
 
     </style>
-
 </head>
 
 
 <body>
 
-    <div class="container">
+<div class="container">
 
-        <!-- Main Card -->
+    <header>
+
+        <h1>AI Resume-Job Matcher</h1>
+
+        <p>
+            Analyze your resume against a job description
+            using skill matching and NLP similarity.
+        </p>
+
+    </header>
+
+
+    <!-- UPLOAD RESUME -->
+
+    <div class="card">
+
+        <h2>1. Upload Resume</h2>
+
+        <div class="upload-area">
+
+            <p>
+                Upload your resume in PDF or DOCX format
+            </p>
+
+            <input
+                type="file"
+                id="resumeFile"
+                accept=".pdf,.docx"
+            >
+
+            <div
+                class="file-name"
+                id="fileName"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JOB DESCRIPTION -->
+
+    <div class="card">
+
+        <h2>2. Job Description</h2>
+
+        <textarea
+            id="jobDescription"
+            placeholder="Paste the job description here..."
+        ></textarea>
+
+        <button
+            onclick="analyzeResume()"
+        >
+            Analyze Resume
+        </button>
+
+        <div
+            class="loading"
+            id="loading"
+        >
+            Analyzing resume...
+        </div>
+
+        <div
+            class="error"
+            id="error"
+        ></div>
+
+    </div>
+
+
+    <!-- RESULTS -->
+
+    <div
+        class="results"
+        id="results"
+    >
+
+        <!-- SCORES -->
 
         <div class="card">
 
-            <h1>AI Resume-Job Matcher</h1>
+            <h2>Match Results</h2>
 
-            <p class="subtitle">
-                Analyze how well your resume matches a job description
-            </p>
+            <div class="score-container">
 
+                <div class="score-box">
 
-            <!-- Resume Upload -->
+                    <h3>Overall Match</h3>
 
-            <label for="resume">
-                Upload Resume
-            </label>
-
-            <div class="file-box">
-
-                <input
-                    type="file"
-                    id="resume"
-                    accept=".pdf,.docx"
-                    onchange="showSelectedFile()"
-                >
-
-                <div
-                    id="selectedFile"
-                    class="selected-file"
-                >
-
-                    <span id="fileName"></span>
-
-                    <button
-                        type="button"
-                        id="removeFile"
-                        onclick="removeResume()"
-                        title="Remove resume"
+                    <div
+                        class="score"
+                        id="overallScore"
                     >
-                        ×
-                    </button>
+                        0%
+                    </div>
+
+                </div>
+
+
+                <div class="score-box">
+
+                    <h3>Skill Match</h3>
+
+                    <div
+                        class="score"
+                        id="skillScore"
+                    >
+                        0%
+                    </div>
+
+                </div>
+
+
+                <div class="score-box">
+
+                    <h3>NLP Similarity</h3>
+
+                    <div
+                        class="score"
+                        id="nlpScore"
+                    >
+                        0%
+                    </div>
 
                 </div>
 
             </div>
 
-
-            <!-- Job Description -->
-
-            <label for="jobDescription">
-                Job Description
-            </label>
-
-            <textarea
-                id="jobDescription"
-                placeholder="Paste the job description here..."
-            ></textarea>
+        </div>
 
 
-            <!-- Analyze Button -->
+        <!-- SKILLS -->
 
-            <button onclick="analyzeResume()">
-                Analyze Resume
-            </button>
+        <div class="card">
+
+            <h2>Skills Analysis</h2>
+
+            <div class="skills-container">
 
 
-            <!-- Loading -->
+                <div>
 
-            <div
-                class="loading"
-                id="loading"
-            >
-                Analyzing your resume...
+                    <h3 style="margin-bottom: 12px;">
+                        Matched Skills
+                    </h3>
+
+                    <div
+                        class="skill-list"
+                        id="matchedSkills"
+                    ></div>
+
+                </div>
+
+
+                <div>
+
+                    <h3 style="margin-bottom: 12px;">
+                        Missing Skills
+                    </h3>
+
+                    <div
+                        class="skill-list"
+                        id="missingSkills"
+                    ></div>
+
+                </div>
+
             </div>
 
         </div>
 
 
-        <!-- Results -->
+        <!-- BREAKDOWN -->
 
-        <div id="result"></div>
+        <div class="card">
+
+            <h2>Skill Breakdown</h2>
+
+            <table class="breakdown">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Skill</th>
+
+                        <th>Importance</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody
+                    id="skillBreakdown"
+                ></tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
-
-    <script>
-
-
-        /* Show Selected Resume */
-
-        function showSelectedFile() {
-
-            const fileInput =
-                document.getElementById("resume");
-
-            const selectedFile =
-                document.getElementById("selectedFile");
-
-            const fileName =
-                document.getElementById("fileName");
+</div>
 
 
-            if (fileInput.files.length > 0) {
+<script>
 
-                fileName.textContent =
-                    fileInput.files[0].name;
-
-                selectedFile.style.display = "flex";
-
-            }
-
-        }
+const API_URL = "http://127.0.0.1:8000";
 
 
-        /* Remove Selected Resume */
+const fileInput =
+    document.getElementById("resumeFile");
 
-        function removeResume() {
 
-            document.getElementById("resume").value = "";
+fileInput.addEventListener(
+    "change",
+    function () {
 
-            document.getElementById("selectedFile")
-                .style.display = "none";
+        if (this.files.length > 0) {
 
-            document.getElementById("fileName")
-                .textContent = "";
+            document.getElementById(
+                "fileName"
+            ).textContent =
+                "Selected: " +
+                this.files[0].name;
+
+        } else {
+
+            document.getElementById(
+                "fileName"
+            ).textContent = "";
 
         }
 
-
-        /* Analyze Resume */
-
-        async function analyzeResume() {
-
-            const fileInput =
-                document.getElementById("resume");
-
-            const jobDescription =
-                document.getElementById("jobDescription").value;
-
-            const resultDiv =
-                document.getElementById("result");
-
-            const loadingDiv =
-                document.getElementById("loading");
-
-            if (fileInput.files.length === 0) {
-
-                alert("Please upload a resume.");
-
-                return;
-
-            }
+    }
+);
 
 
-            if (jobDescription.trim() === "") {
+async function analyzeResume() {
 
-                alert("Please enter a job description.");
+    const file =
+        fileInput.files[0];
 
-                return;
-
-            }
-
-            const formData =
-                new FormData();
+    const jobDescription =
+        document.getElementById(
+            "jobDescription"
+        ).value.trim();
 
 
-            formData.append(
-                "file",
-                fileInput.files[0]
+    const loading =
+        document.getElementById("loading");
+
+    const error =
+        document.getElementById("error");
+
+    const results =
+        document.getElementById("results");
+
+
+    error.style.display = "none";
+
+
+    if (!file) {
+
+        error.textContent =
+            "Please upload a resume first.";
+
+        error.style.display = "block";
+
+        return;
+    }
+
+
+    if (!jobDescription) {
+
+        error.textContent =
+            "Please enter a job description.";
+
+        error.style.display = "block";
+
+        return;
+    }
+
+
+    const formData =
+        new FormData();
+
+    formData.append(
+        "file",
+        file
+    );
+
+    formData.append(
+        "job_description",
+        jobDescription
+    );
+
+
+    loading.style.display = "block";
+
+    results.style.display = "none";
+
+
+    try {
+
+        const response =
+            await fetch(
+                API_URL + "/analyze-resume",
+                {
+                    method: "POST",
+                    body: formData
+                }
             );
 
 
-            formData.append(
-                "job_description",
-                jobDescription
+        const data =
+            await response.json();
+
+
+        if (!response.ok) {
+
+            throw new Error(
+                data.detail ||
+                "Something went wrong."
             );
-
-            loadingDiv.style.display = "block";
-
-            resultDiv.style.display = "none";
-
-
-            try {
-
-                const response =
-                    await fetch(
-                        "http://127.0.0.1:8000/analyze-resume",
-                        {
-                            method: "POST",
-                            body: formData
-                        }
-                    );
-
-
-                const data =
-                    await response.json();
-
-                if (data.error) {
-
-                    resultDiv.innerHTML = `
-
-                        <div class="card">
-
-                            <p>
-                                ${data.error}
-                            </p>
-
-                        </div>
-
-                    `;
-
-                }
-
-
-                else {
-                    let matchedSkills =
-                        data.matched_skills
-                            .map(
-                                skill =>
-                                    `<span class="skill">${skill}</span>`
-                            )
-                            .join("");
-
-
-                    
-
-                    let missingSkills =
-                        data.missing_skills
-                            .map(
-                                skill =>
-                                    `<span class="skill">${skill}</span>`
-                            )
-                            .join("");
-
-
-                    resultDiv.innerHTML = `
-
-                        <!-- Overall Score -->
-
-                        <div class="score-card">
-
-                            <h2>
-                                Resume Match Score
-                            </h2>
-
-                            <div class="score">
-
-                                ${data.overall_match_score}%
-
-                            </div>
-
-
-                            <div class="progress-container">
-
-                                <div
-                                    class="progress-bar"
-                                    style="width: ${data.overall_match_score}%"
-                                ></div>
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- Metrics -->
-
-                        <div class="metrics">
-
-
-                            <div class="metric-card">
-
-                                <div>
-                                    Skill Match
-                                </div>
-
-                                <div class="metric-value">
-
-                                    ${data.skill_match_score}%
-
-                                </div>
-
-                            </div>
-
-
-                            <div class="metric-card">
-
-                                <div>
-                                    NLP Similarity
-                                </div>
-
-                                <div class="metric-value">
-
-                                    ${data.text_similarity_score}%
-
-                                </div>
-
-                            </div>
-
-
-                        </div>
-
-
-                        <!-- Skills -->
-
-                        <div class="skills-container">
-
-
-                            <div class="skills-card">
-
-                                <h3>
-                                    Matched Skills
-                                </h3>
-
-                                ${
-                                    matchedSkills ||
-                                    "No matching skills found."
-                                }
-
-                            </div>
-
-
-                            <div class="skills-card">
-
-                                <h3>
-                                    Missing Skills
-                                </h3>
-
-                                ${
-                                    missingSkills ||
-                                    "No missing skills."
-                                }
-
-                            </div>
-
-
-                        </div>
-
-                    `;
-
-
-                    resultDiv.style.display =
-                        "block";
-
-                }
-
-            }
-
-
-            catch (error) {
-
-                resultDiv.innerHTML = `
-
-                    <div class="card">
-
-                        <p>
-
-                            Could not connect to the backend.
-                            Make sure FastAPI is running.
-
-                        </p>
-
-                    </div>
-
-                `;
-
-                resultDiv.style.display =
-                    "block";
-
-            }
-
-
-            loadingDiv.style.display =
-                "none";
 
         }
 
-    </script>
+
+        displayResults(data);
+
+
+    } catch (err) {
+
+        error.textContent =
+            "Error: " + err.message;
+
+        error.style.display = "block";
+
+    }
+
+
+    loading.style.display = "none";
+
+}
+
+
+function displayResults(data) {
+
+    document.getElementById(
+        "results"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "overallScore"
+    ).textContent =
+        data.overall_match_score + "%";
+
+
+    document.getElementById(
+        "skillScore"
+    ).textContent =
+        data.skill_match_score + "%";
+
+
+    document.getElementById(
+        "nlpScore"
+    ).textContent =
+        data.text_similarity_score + "%";
+
+
+    // -----------------------------------------------------
+    // MATCHED SKILLS
+    // -----------------------------------------------------
+
+    const matchedContainer =
+        document.getElementById(
+            "matchedSkills"
+        );
+
+    matchedContainer.innerHTML = "";
+
+
+    data.matched_skills.forEach(
+        skill => {
+
+            const span =
+                document.createElement("span");
+
+            span.className =
+                "skill matched";
+
+            span.textContent =
+                skill;
+
+            matchedContainer.appendChild(
+                span
+            );
+
+        }
+    );
+
+
+    // -----------------------------------------------------
+    // MISSING SKILLS
+    // -----------------------------------------------------
+
+    const missingContainer =
+        document.getElementById(
+            "missingSkills"
+        );
+
+    missingContainer.innerHTML = "";
+
+
+    data.missing_skills.forEach(
+        skill => {
+
+            const span =
+                document.createElement("span");
+
+            span.className =
+                "skill missing";
+
+            span.textContent =
+                skill;
+
+            missingContainer.appendChild(
+                span
+            );
+
+        }
+    );
+
+
+    // -----------------------------------------------------
+    // SKILL BREAKDOWN
+    // -----------------------------------------------------
+
+    const breakdown =
+        document.getElementById(
+            "skillBreakdown"
+        );
+
+    breakdown.innerHTML = "";
+
+
+    data.skill_breakdown.forEach(
+        item => {
+
+            const row =
+                document.createElement("tr");
+
+
+            const skillCell =
+                document.createElement("td");
+
+            skillCell.textContent =
+                item.skill;
+
+
+            const importanceCell =
+                document.createElement("td");
+
+            importanceCell.textContent =
+                item.importance;
+
+            importanceCell.className =
+                "importance";
+
+
+            const statusCell =
+                document.createElement("td");
+
+
+            if (item.status === "matched") {
+
+                statusCell.textContent =
+                    "Matched";
+
+                statusCell.className =
+                    "status matched-text";
+
+            } else {
+
+                statusCell.textContent =
+                    "Missing";
+
+                statusCell.className =
+                    "status missing-text";
+
+            }
+
+
+            row.appendChild(
+                skillCell
+            );
+
+            row.appendChild(
+                importanceCell
+            );
+
+            row.appendChild(
+                statusCell
+            );
+
+
+            breakdown.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+</script>
 
 </body>
 
